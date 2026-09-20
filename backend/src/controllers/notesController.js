@@ -14,12 +14,6 @@ export const createNote = async (req, res) => {
   try {
     const { title, content } = req.body;
 
-    if (!title?.trim() || !content?.trim()) {
-      return res
-        .status(400)
-        .json({ message: "Title and content are required." });
-    }
-
     const note = new Note({
       title: title,
       content: content,
@@ -36,12 +30,6 @@ export const createNote = async (req, res) => {
 export const updateNote = async (req, res) => {
   try {
     const { title, content } = req.body;
-
-    if (!title?.trim() || !content?.trim()) {
-      return res
-        .status(400)
-        .json({ message: "Title and content are required." });
-    }
 
     const updatedNote = await Note.findByIdAndUpdate(
       req.params.id,
